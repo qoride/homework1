@@ -1,9 +1,11 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
 int main(){
-    int input = 0;
+    int input = 0, digit = 0;
+    long long int binary = 0;
     
     while(input < 1){
 
@@ -19,6 +21,18 @@ int main(){
             cout << "\n\nERROR: Invalid input.\n" << endl;
         }
     }
+
+    while(input > 0){
+        if((input%2)*pow(10,digit) >= INT32_MAX){
+            cout << "\nERROR: Integer overflow.";
+            return 0;
+        }
+        binary += (input%2)*pow(10,digit);
+        input /= 2;
+        digit++;
+    }
+    
+    cout << "\nBinary representation: " << binary;
 
     return 0;
 }
